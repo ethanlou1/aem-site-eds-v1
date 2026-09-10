@@ -1,126 +1,28 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>News</title>
-  <meta name="description" content="Latest news and articles.">
-
-  <!-- Replace www.example.com with the production hostname. -->
-  <link rel="canonical" href="https://www.example.com/news/">
-
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="News">
-  <meta property="og:description" content="Latest news and articles.">
-  <meta property="og:url" content="https://www.example.com/news/">
+  <meta charset="UTF-8">
+  <title>News List Diagnostic</title>
 </head>
-
 <body>
-  <main id="main" class="news-page">
-    <header class="news-page__header">
-      <h1>News</h1>
-    </header>
+  <main>
+    <h1>News List Diagnostic</h1>
 
-    <section
-      class="news-list"
-      data-block-name="news-list"
-      data-end-cursor="{{data.articlePaginated.pageInfo.endCursor}}"
-      data-has-next-page="{{data.articlePaginated.pageInfo.hasNextPage}}"
-      aria-label="News articles">
-
-      <ol class="news-list__items">
-        {{#data.articlePaginated.edges}}
-          {{#node}}
-            <li
-              class="news-card"
-              data-content-path="{{node._path}}">
-
-              <article class="news-card__article">
-                {{#node.featuredImage}}
-                  <a
-                    class="news-card__image-link"
-                    href="/news/{{node.slug}}"
-                    aria-label="Read {{node.title}}">
-
-                    <img
-                      class="news-card__image"
-                      src="{{node.featuredImage._dynamicUrl}}"
-                      alt="{{node.title}}"
-                      decoding="async">
-                  </a>
-                {{/node.featuredImage}}
-
-                <div class="news-card__content">
-                  <h2 class="news-card__title">
-                    <a href="/news/{{node.slug}}">
-                      {{node.title}}
-                    </a>
-                  </h2>
-
-                  {{#node.authorFragment}}
-                    <div class="news-card__author">
-                      {{#node.authorFragment.profilePicture}}
-                        <img
-                          class="news-card__author-image"
-                          src="{{node.authorFragment.profilePicture._dynamicUrl}}"
-                          alt="{{node.authorFragment.firstName}} {{node.authorFragment.lastName}}"
-                          width="40"
-                          height="40"
-                          decoding="async">
-                      {{/node.authorFragment.profilePicture}}
-
-                      <span class="news-card__author-name">
-                        By
-                        {{node.authorFragment.firstName}}
-                        {{node.authorFragment.lastName}}
-                      </span>
-                    </div>
-                  {{/node.authorFragment}}
-
-                  <p class="news-card__link">
-                    <a href="/news/{{node.slug}}">
-                      Read more
-                    </a>
-                  </p>
-                </div>
+    <section class="news-list">
+      {{#data}}
+        {{#articlePaginated}}
+          {{#edges}}
+            {{#node}}
+              <article class="news-card">
+                <h2>
+                  <a href="/news/{{slug}}">{{title}}</a>
+                </h2>
               </article>
-            </li>
-          {{/node}}
-        {{/data.articlePaginated.edges}}
-
-        {{^data.articlePaginated.edges}}
-          <li class="news-list__empty">
-            No news articles are available.
-          </li>
-        {{/data.articlePaginated.edges}}
-      </ol>
-
-      {{#data.articlePaginated.pageInfo.hasNextPage}}
-        <button
-          type="button"
-          class="news-list__load-more"
-          data-next-cursor="{{data.articlePaginated.pageInfo.endCursor}}"
-          aria-controls="news-list-items">
-          Load more
-        </button>
-      {{/data.articlePaginated.pageInfo.hasNextPage}}
+            {{/node}}
+          {{/edges}}
+        {{/articlePaginated}}
+      {{/data}}
     </section>
   </main>
-
-  <!--
-    This is valid page-level JSON-LD.
-    Dynamic ItemList JSON-LD is intentionally not generated here because
-    the current Mustache input does not provide a reliable item position
-    or comma/separator control.
-  -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "News",
-    "url": "https://www.example.com/news/"
-  }
-  </script>
 </body>
 </html>
