@@ -3,26 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <title>News List Diagnostic</title>
+  <meta name="description" content="Latest news and articles">
+  <link rel="canonical" href="/news">
 </head>
 <body>
-  <main>
-    <h1>News List Diagnostic</h1>
+  <header></header>
 
-    <section class="news-list">
-      {{#data}}
-        {{#articlePaginated}}
-          {{#edges}}
-            {{#node}}
-              <article class="news-card">
-                <h2>
-                  <a href="/news/{{slug}}">{{title}}</a>
-                </h2>
-              </article>
-            {{/node}}
-          {{/edges}}
-        {{/articlePaginated}}
-      {{/data}}
-    </section>
+  <main>
+    <div>
+      <h1>News List Diagnostic</h1>
+
+      <div class="news-list">
+        {{#data}}
+          {{#articlePaginated}}
+            {{#edges}}
+              {{#node}}
+                <div>
+                  <div>
+                    <h2>
+                      <a href="/news/{{slug}}">{{title}}</a>
+                    </h2>
+                  </div>
+                </div>
+              {{/node}}
+            {{/edges}}
+          {{/articlePaginated}}
+        {{/data}}
+      </div>
+    </div>
   </main>
+
+  <footer></footer>
 </body>
 </html>
