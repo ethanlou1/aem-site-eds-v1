@@ -19,16 +19,5 @@
   },
   {
     "...": "../blocks/*/_*.json#/models"
-  },
-  {
-  "id": "watermark-text",
-  "fields": [
-    {
-      "component": "watermark-richtext",
-      "name": "text",
-      "label": "Text",
-      "valueType": "string"
-    }
-  ]
-}
+  }
 ]
